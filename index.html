@@ -3282,18 +3282,9 @@
       const list = document.getElementById('commentsList');
       const count = document.getElementById('commentCount');
       count.innerText = comments.length;
-      // Update the heading text too
-      const langNow2 = localStorage.getItem('portfolio_lang') || 'en';
-      const countEl2 = document.querySelector('[data-i18n="discussion-comments-count"]');
-      if (countEl2 && typeof getTranslation !== 'undefined') {
-        const tpl = getTranslation('discussion-comments-count', langNow2);
-        if (tpl) countEl2.innerHTML = tpl.replace('{count}', `<span id="commentCount">${comments.length}</span>`);
-      }
 
       if (comments.length === 0) {
-        const langNow = localStorage.getItem('portfolio_lang') || 'en';
-        const emptyMsg = typeof getTranslation !== 'undefined' ? getTranslation('discussion-empty', langNow) : 'No discussions yet. Be the first to leave a comment!';
-        list.innerHTML = `<div style="text-align:center; color:var(--dim); padding:2rem 0; font-size:.8rem;">${emptyMsg}</div>`;
+        list.innerHTML = `<div style="text-align:center; color:var(--dim); padding:2rem 0; font-size:.8rem;">No discussions yet. Be the first to leave a comment!</div>`;
         return;
       }
 
