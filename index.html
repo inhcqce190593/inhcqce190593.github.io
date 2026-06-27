@@ -1297,6 +1297,8 @@
       margin-bottom: 1px;
       overflow: hidden;
       min-height: 320px;
+      position: relative;
+      z-index: 1;
     }
 
     .pf-visual {
@@ -1440,6 +1442,8 @@
       transition: background .25s;
       position: relative;
       overflow: hidden;
+      position: relative;
+      z-index: 1;
     }
 
     .proj-card::before {
@@ -2288,7 +2292,9 @@
 
       .project-featured {
         grid-template-columns: 1fr
-      }
+        position: relative;
+      z-index: 1;
+    }
 
       .pf-visual {
         min-height: 180px;
@@ -2396,7 +2402,9 @@
 
       .projects-grid .proj-card {
         border-right: none
-      }
+        position: relative;
+      z-index: 1;
+    }
 
       .projects-grid .proj-card:nth-child(3n),
       .projects-grid .proj-card:nth-child(2n) {
@@ -2796,8 +2804,7 @@
               <span class="p-tag">Agriculture AI</span>
             </div>
             <div class="p-title">MekongCrop AI</div>
-            <p class="p-desc"><span data-i18n="projects-featured-desc">Multimodal agricultural disease diagnosis system for the Mekong Delta — combining CNN leaf image processing (rice, mango, durian) with weather and geographic metadata.</span>
-              2026.</p>
+            <p class="p-desc"><span data-i18n="projects-featured-desc">Multimodal agricultural disease diagnosis system for the Mekong Delta — combining CNN leaf image processing (rice, mango, durian) with weather and geographic metadata.</span></p>
           </div>
           <div class="p-footer">
             <span class="p-num">001 / RESEARCH</span>
@@ -3274,9 +3281,18 @@
       const list = document.getElementById('commentsList');
       const count = document.getElementById('commentCount');
       count.innerText = comments.length;
+      // Update the heading text too
+      const langNow2 = localStorage.getItem('portfolio_lang') || 'en';
+      const countEl2 = document.querySelector('[data-i18n="discussion-comments-count"]');
+      if (countEl2 && typeof getTranslation !== 'undefined') {
+        const tpl = getTranslation('discussion-comments-count', langNow2);
+        if (tpl) countEl2.innerHTML = tpl.replace('{count}', `<span id="commentCount">${comments.length}</span>`);
+      }
 
       if (comments.length === 0) {
-        list.innerHTML = `<div style="text-align:center; color:var(--dim); padding:2rem 0; font-size:.8rem;">No discussions yet. Be the first to leave a comment!</div>`;
+        const langNow = localStorage.getItem('portfolio_lang') || 'en';
+        const emptyMsg = typeof getTranslation !== 'undefined' ? getTranslation('discussion-empty', langNow) : 'No discussions yet. Be the first to leave a comment!';
+        list.innerHTML = `<div style="text-align:center; color:var(--dim); padding:2rem 0; font-size:.8rem;">${emptyMsg}</div>`;
         return;
       }
 
@@ -3472,7 +3488,7 @@ const translations = {
   'section-projects': { en: 'Projects', vi: 'Dự án', jp: 'プロジェクト' },
   'projects-featured-badge': { en: 'Featured Research', vi: 'Nghiên cứu nổi bật', jp: '注目の研究' },
   'projects-featured-desc': {
-    en: 'Multimodal agricultural disease diagnosis system for the Mekong Delta — combining CNN leaf image processing (rice, mango, durian) with weather and geographic metadata. 2026.',
+    en: 'Multimodal agricultural disease diagnosis system for the Mekong Delta — combining CNN leaf image processing (rice, mango, durian) with weather and geographic metadata.',
     vi: 'Hệ thống nhận diện bệnh cây trồng đa phương thức cho vùng Đồng bằng Sông Cửu Long — kết hợp CNN xử lý ảnh lá cây (lúa, xoài, sầu riêng) với dữ liệu thời tiết và metadata địa lý.',
     jp: 'メコンデルタ向けのマルチモーダル農作物病気診断システム。CNNによる葉の画像処理（稲、マンゴー、ドリアン）に気象データと地理メタデータを統合。'
   },
