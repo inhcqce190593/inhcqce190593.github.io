@@ -2526,17 +2526,17 @@
       </div>
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num">3+</span>
-          <span class="stat-label">Academic Year</span>
-        </div>
+        <span class="stat-num">2023-2027</span>
+        <span class="stat-label" data-i18n="hero-stat-experience">Academic Year</span>
+      </div>
         <div class="stat-item">
-          <span class="stat-num">10+</span>
-          <span class="stat-label">Projects</span>
-        </div>
+        <span class="stat-num">15+</span>
+        <span class="stat-label" data-i18n="hero-stat-projects">Completed Projects</span>
+      </div>
         <div class="stat-item">
-          <span class="stat-num">5+</span>
-          <span class="stat-label">Category</span>
-        </div>
+        <span class="stat-num">5+</span>
+        <span class="stat-label" data-i18n="hero-stat-papers">Research Papers</span>
+      </div>
       </div>
     </div>
 
@@ -2608,7 +2608,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-num">01</span>
-        <h2 class="section-title">About</h2>
+        <h2 class="section-title" data-i18n="section-about">About</h2>
         <div class="section-line"></div>
       </div>
       <div class="about-grid">
@@ -2636,24 +2636,24 @@
                 <td><span data-i18n="about-val-location">Can Tho, Vietnam</span></td>
               </tr>
               <tr>
-                <td>University</td>
-                <td>FPT University CT</td>
+                <td><span data-i18n="about-label-university">University</span></td>
+                <td><span data-i18n="about-val-university">FPT University Can Tho</span></td>
               </tr>
               <tr>
-                <td>Major</td>
-                <td>Computer Science</td>
+                <td><span data-i18n="about-label-major">Major</span></td>
+                <td><span data-i18n="about-val-major">Software Engineering</span></td>
               </tr>
               <tr>
-                <td>Year</td>
-                <td>3rd · 2022–2026</td>
+                <td><span data-i18n="about-label-year">Academic Year</span></td>
+                <td><span data-i18n="about-val-year">2023–2027</span></td>
               </tr>
               <tr>
                 <td><span data-i18n="about-label-focus">Focus</span></td>
-                <td>Web · AI · IoT</td>
+                <td><span data-i18n="about-val-focus">Web · AI · IoT</span></td>
               </tr>
               <tr>
                 <td><span data-i18n="about-label-status">Status</span></td>
-                <td><span class="status-open"><span class="pulse"></span>Open to work</span></td>
+                <td><span class="status-open"><span class="pulse"></span><span data-i18n="about-val-status">Available for Projects</span></span></td>
               </tr>
             </table>
           </div>
@@ -2661,10 +2661,10 @@
 
         <!-- Right: text -->
         <div class="about-body">
-          <p class="reveal delay-1">I am a 3rd-year <strong>Software Engineering</strong> student at FPT University Can Tho — passionate about creating high-value software products, from management web apps to smart AI systems serving the community.</p>
-          <p class="reveal delay-2">Specifically interested in applying <strong>AI/ML to agriculture and aquaculture</strong> in the Mekong Delta — crop disease detection, shrimp pond monitoring using computer vision, and smart alerts via IoT. Technology creating real impact for local farmers.
+          <p class="reveal delay-1" data-i18n="about-bio-p1">I am a 3rd-year <strong>Software Engineering</strong> student at FPT University Can Tho — passionate about creating high-value software products, from management web apps to smart AI systems serving the community.</p>
+          <p class="reveal delay-2" data-i18n="about-bio-p2">Specifically interested in applying <strong>AI/ML to agriculture and aquaculture</strong> in the Mekong Delta — crop disease detection, shrimp pond monitoring using computer vision, and smart alerts via IoT. Technology creating real impact for local farmers.
           </p>
-          <p class="reveal delay-3">Besides research, I <strong>accept freelance projects</strong>: advertising &amp; e-commerce websites, enterprise management software, and IoT hardware for aquaculture — from concept to final product.</p>
+          <p class="reveal delay-3" data-i18n="about-bio-p3">Besides research, I <strong>accept freelance projects</strong>: advertising &amp; e-commerce websites, enterprise management software, and IoT hardware for aquaculture — from concept to final product.</p>
           <div class="reveal delay-4" style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)">
             <div
               style="font-family:var(--f-mono);font-size:.54rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem">
@@ -2700,13 +2700,13 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-num">02</span>
-        <h2 class="section-title">Skills &amp; Stack</h2>
+        <h2 class="section-title" data-i18n="section-skills">Skills &amp; Stack</h2>
         <div class="section-line"></div>
       </div>
       <div class="skills-grid">
         <div class="skill-col reveal" data-num="01">
           <div class="skill-head">Backend</div>
-          <div class="skill-desc">Building APIs, server-side systems, and relational databases.</div>
+          <div class="skill-desc" data-i18n="skills-desc-backend">Building APIs, server-side systems, and relational databases.</div>
           <div class="tech-list">
             <div class="tech-row"><span class="tech-name">Java Spring Boot</span><span
                 class="tech-badge b-adv">Advanced</span></div>
@@ -3417,11 +3417,20 @@ const translations = {
   'hero-desc': { en: 'Building smart web applications, researching AI/ML applied to agriculture & aquaculture in the Mekong Delta. Available for freelance web design, IoT systems, and management software.', vi: 'Xây dựng ứng dụng web thông minh, nghiên cứu AI/ML ứng dụng nông nghiệp & thủy sản Đồng bằng Sông Cửu Long. Nhận thiết kế web, hệ thống IoT và phần mềm quản lý.', jp: 'スマートなWebアプリケーションの構築、メコンデルタにおける農業および水産業向けのAI/ML研究。フリーランス of Webデザイン、IoTシステム、管理ソフトウェアの受託開発に対応。' },
   'hero-btn-view': { en: 'View Projects', vi: 'Xem dự án', jp: 'プロジェクトを見る' },
   'hero-btn-contact': { en: 'Contact Me', vi: 'Liên hệ', jp: 'お問い合わせ' },
-  'hero-stat-experience': { en: 'Years Experience', vi: 'Năm học', jp: '学年' },
+  'hero-stat-experience': { en: 'Academic Year', vi: 'Năm học', jp: '学年' },
   'hero-stat-projects': { en: 'Completed Projects', vi: 'Dự án', jp: 'プロジェクト' },
   'hero-stat-papers': { en: 'Research Papers', vi: 'Nghiên cứu khoa học', jp: '研究論文' },
   
-  'section-about': { en: 'About Me', vi: 'Giới thiệu', jp: '自己紹介' },
+  
+  'about-label-university': { en: 'University', vi: 'Trường học', jp: '学校' },
+  'about-val-university': { en: 'FPT University Can Tho', vi: 'Đại học FPT Cần Thơ', jp: 'FPT大学 カントー校' },
+  'about-label-major': { en: 'Major', vi: 'Chuyên ngành', jp: '専攻' },
+  'about-val-major': { en: 'Software Engineering', vi: 'Kỹ thuật Phần mềm', jp: 'ソフトウェアエンジニアリング' },
+  'about-label-year': { en: 'Academic Year', vi: 'Niên khóa', jp: '学年' },
+  'about-val-year': { en: '2023–2027', vi: '2023–2027', jp: '2023年–2027年' },
+  'about-val-focus': { en: 'Web · AI · IoT', vi: 'Web · AI · IoT', jp: 'Web · AI · IoT' },
+  
+  'section-about': { en: 'About', vi: 'Giới thiệu', jp: '自己紹介' },
   'about-role': { en: 'Software Engineer & Designer', vi: 'Software Engineer & Designer', jp: 'ソフトウェアエンジニア＆デザイナー' },
   'about-label-focus': { en: 'Focus', vi: 'Lĩnh vực', jp: '専門分野' },
   'about-val-focus': { en: 'Software Engineering', vi: 'Kỹ thuật Phần mềm', jp: 'ソフトウェアエンジニアリング' },
@@ -3455,8 +3464,8 @@ const translations = {
   'about-service-iot': { en: 'IoT & Embedded Systems', vi: 'Hệ thống IoT', jp: 'IoTおよび組み込みシステム開発' },
   'about-service-uiux': { en: 'Web UI/UX Design', vi: 'Thiết kế Web UI/UX', jp: 'Web UI/UXデザイン' },
   
-  'section-skills': { en: 'Skills', vi: 'Kỹ năng', jp: 'スキル' },
-  'skills-desc-backend': { en: 'System development, database management, and API design.', vi: 'Xây dựng API, hệ thống server-side và cơ sở dữ liệu quan hệ.', jp: 'システム開発、データベース管理、およびAPI設計。' },
+  'section-skills': { en: 'Skills & Stack', vi: 'Kỹ năng & Công nghệ', jp: 'スキルとスタック' },
+  'skills-desc-backend': { en: 'Building APIs, server-side systems, and relational databases.', vi: 'Xây dựng API, hệ thống server-side và cơ sở dữ liệu quan hệ.', jp: 'API、サーバーサイドシステム、および関係データベースの構築。' },
   'skills-desc-frontend': { en: 'Beautiful, responsive layouts and premium user experience.', vi: 'Giao diện đẹp, responsive, trải nghiệm người dùng tốt.', jp: '美しくレスポンシブなレイアウトと優れたユーザー体験。' },
   'skills-desc-ai': { en: 'Machine learning, computer vision, and smart hardware.', vi: 'Machine learning, computer vision, phần cứng thông minh.', jp: '機械学習、コンピュータビジョン、スマートハードウェア。' },
   
