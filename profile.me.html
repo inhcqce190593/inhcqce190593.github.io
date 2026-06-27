@@ -793,7 +793,41 @@
       }
     }
 
-    /* ──────────────────────────────────────
+    
+    /* ── Language Switcher ── */
+    .lang-switcher {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      margin: 0 1.2rem;
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--dim);
+      font-family: var(--f-mono);
+      font-size: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      color: var(--lime);
+      border-color: var(--lime);
+    }
+    .lang-btn.active {
+      color: var(--ink);
+      background: var(--lime);
+      border-color: var(--lime);
+      font-weight: 700;
+    }
+    @media(max-width:960px) {
+      .lang-switcher {
+        margin: 0 0.5rem;
+      }
+    }
+  
+/* ──────────────────────────────────────
    BUTTONS
 ────────────────────────────────────── */
     .btn {
@@ -2436,11 +2470,17 @@
 
   <!-- Mobile nav -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="#about" onclick="closeMenu()">About</a>
-    <a href="#skills" onclick="closeMenu()">Skills</a>
-    <a href="#projects" onclick="closeMenu()">Projects</a>
-    <a href="#discussion" onclick="closeMenu()">Discussion</a>
-    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="#about" onclick="closeMenu()" data-i18n="nav-about">About</a>
+    <a href="#skills" onclick="closeMenu()" data-i18n="nav-skills">Skills</a>
+    <a href="#projects" onclick="closeMenu()" data-i18n="nav-projects">Projects</a>
+    <a href="#discussion" onclick="closeMenu()" data-i18n="nav-discussion">Discussion</a>
+    <a href="#contact" onclick="closeMenu()" data-i18n="nav-contact">Contact</a>
+    
+    <div class="lang-switcher" style="margin-top: 2rem; margin-bottom: 1rem;">
+      <button onclick="changeLanguage('en'); closeMenu();" class="lang-btn active" id="mobile-lang-en">EN</button>
+      <button onclick="changeLanguage('vi'); closeMenu();" class="lang-btn" id="mobile-lang-vi">VI</button>
+      <button onclick="changeLanguage('jp'); closeMenu();" class="lang-btn" id="mobile-lang-jp">JP</button>
+    </div>
     <span class="mobile-nav-sub">Chau Quoc Inh · CQI</span>
   </div>
 
@@ -2448,12 +2488,18 @@
   <nav>
     <a href="#" class="nav-logo">CQ<span class="dot-acc">I</span></a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#discussion">Discussion</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav-about">About</a></li>
+      <li><a href="#skills" data-i18n="nav-skills">Skills</a></li>
+      <li><a href="#projects" data-i18n="nav-projects">Projects</a></li>
+      <li><a href="#discussion" data-i18n="nav-discussion">Discussion</a></li>
+      <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
     </ul>
+    
+    <div class="lang-switcher">
+      <button onclick="changeLanguage('en')" class="lang-btn active" id="lang-en">EN</button>
+      <button onclick="changeLanguage('vi')" class="lang-btn" id="lang-vi">VI</button>
+      <button onclick="changeLanguage('jp')" class="lang-btn" id="lang-jp">JP</button>
+    </div>
     <div class="nav-badge"><span class="pulse"></span>Available for work</div>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -2471,11 +2517,11 @@
         Chau<br>
         <span class="name-accent">Quoc Inh</span>
       </h1>
-      <p class="hero-subtitle">Developer &amp; Designer · AI / IoT Researcher<br>FPT University Can Tho</p>
+      <p class="hero-subtitle" data-i18n="hero-subtitle">Developer &amp; Designer · AI / IoT Researcher<br>FPT University Can Tho</p>
       <div class="hero-line"></div>
-      <p class="hero-desc">Building smart web applications, researching AI/ML applied to agriculture &amp; aquaculture in the Mekong Delta. Available for freelance web design, IoT systems, and management software.</p>
+      <p class="hero-desc"><span data-i18n="hero-desc">Building smart web applications, researching AI/ML applied to agriculture &amp; aquaculture in the Mekong Delta. Available for freelance web design, IoT systems, and management software.</span></p>
       <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary"><span>View Projects</span></a>
+        <a href="#projects" class="btn btn-primary"><span data-i18n="hero-btn-view">View Projects</span></a>
         <a href="#contact" class="btn btn-ghost">Contact Me →</a>
       </div>
       <div class="hero-stats">
@@ -2586,8 +2632,8 @@
           <div class="info-card">
             <table class="info-table">
               <tr>
-                <td>Location</td>
-                <td>Can Tho, Vietnam</td>
+                <td><span data-i18n="about-label-location">Location</span></td>
+                <td><span data-i18n="about-val-location">Can Tho, Vietnam</span></td>
               </tr>
               <tr>
                 <td>University</td>
@@ -2602,11 +2648,11 @@
                 <td>3rd · 2022–2026</td>
               </tr>
               <tr>
-                <td>Focus</td>
+                <td><span data-i18n="about-label-focus">Focus</span></td>
                 <td>Web · AI · IoT</td>
               </tr>
               <tr>
-                <td>Status</td>
+                <td><span data-i18n="about-label-status">Status</span></td>
                 <td><span class="status-open"><span class="pulse"></span>Open to work</span></td>
               </tr>
             </table>
@@ -2678,7 +2724,7 @@
         </div>
         <div class="skill-col reveal delay-2" data-num="02">
           <div class="skill-head">Frontend</div>
-          <div class="skill-desc">Beautiful, responsive layouts and premium user experience.</div>
+          <div class="skill-desc"><span data-i18n="skills-desc-frontend">Beautiful, responsive layouts and premium user experience.</span></div>
           <div class="tech-list">
             <div class="tech-row"><span class="tech-name">HTML / CSS / JS</span><span
                 class="tech-badge b-adv">Advanced</span></div>
@@ -2696,7 +2742,7 @@
         </div>
         <div class="skill-col reveal delay-3" data-num="03">
           <div class="skill-head">AI &amp; IoT</div>
-          <div class="skill-desc">Machine learning, computer vision, and smart hardware.</div>
+          <div class="skill-desc"><span data-i18n="skills-desc-ai">Machine learning, computer vision, and smart hardware.</span></div>
           <div class="tech-list">
             <div class="tech-row"><span class="tech-name">Python / Pandas / NumPy</span><span
                 class="tech-badge b-pro">Proficient</span></div>
@@ -2721,7 +2767,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-num">03</span>
-        <h2 class="section-title">Projects</h2>
+        <h2 class="section-title" data-i18n="section-projects">Projects</h2>
         <div class="section-line"></div>
       </div>
 
@@ -2730,7 +2776,7 @@
       <div class="project-featured reveal">
         <div class="pf-visual">
           <div class="pf-grid"></div>
-          <div class="pf-badge">Featured Research</div>
+          <div class="pf-badge" data-i18n="projects-featured-badge">Featured Research</div>
           <svg class="pf-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2C12 2 19 6 19 13C19 16.87 15.87 20 12 20C8.13 20 5 16.87 5 13C5 6 12 2 12 2Z" />
@@ -2750,12 +2796,12 @@
               <span class="p-tag">ResFes 2026</span>
             </div>
             <div class="p-title">MekongCrop AI</div>
-            <p class="p-desc">Multimodal agricultural disease diagnosis system for the Mekong Delta — combining CNN leaf image processing (rice, mango, durian) with weather and geographic metadata. Heading for ResFes
+            <p class="p-desc"><span data-i18n="projects-featured-desc">Multimodal agricultural disease diagnosis system for the Mekong Delta — combining CNN leaf image processing (rice, mango, durian) with weather and geographic metadata. Heading for ResFes</span>
               2026.</p>
           </div>
           <div class="p-footer">
             <span class="p-num">001 / RESEARCH</span>
-            <a href="#" onclick="openProjectModal('mekongcrop', event)" class="p-link">View Details →</a>
+            <a href="#" onclick="openProjectModal('mekongcrop', event)" class="p-link" data-i18n="projects-link-view">View Details →</a>
           </div>
         </div>
       </div>
@@ -2773,9 +2819,9 @@
           </svg>
           <div class="proj-tags"><span class="proj-tag">Spring Boot</span><span class="proj-tag">MySQL</span><span
               class="proj-tag">Thymeleaf</span></div>
-          <h3>THPT Competition Management</h3>
-          <p>Web application to manage student competitions at Cai Nuoc High School — registration, scoring, ranking, and automated Excel reporting.</p>
-          <a href="#" onclick="openProjectModal('thpt-thi-dua', event)" class="p-link">Details →</a>
+          <h3 data-i18n="projects-title-comp">THPT Competition Management</h3>
+          <p data-i18n="projects-desc-comp">Web application to manage student competitions at Cai Nuoc High School — registration, scoring, ranking, and automated Excel reporting.</p>
+          <a href="#" onclick="openProjectModal('thpt-thi-dua', event)" class="p-link" data-i18n="projects-link-details">Details →</a>
         </div>
         <div class="proj-card reveal delay-2">
           <svg class="proj-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -2792,9 +2838,9 @@
           </svg>
           <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">IoT</span><span
               class="proj-tag">ESP32</span></div>
-          <h3>Smart Aqua — Shrimp Pond IoT</h3>
-          <p>IoT system monitoring shrimp pond environment in real-time combined with AI disease identification and mobile alerts.</p>
-          <a href="#" onclick="openProjectModal('smart-aqua', event)" class="p-link">Details →</a>
+          <h3 data-i18n="projects-title-aqua">Smart Aqua — Shrimp Pond IoT</h3>
+          <p data-i18n="projects-desc-aqua">IoT system monitoring shrimp pond environment in real-time combined with AI disease identification and mobile alerts.</p>
+          <a href="#" onclick="openProjectModal('smart-aqua', event)" class="p-link" data-i18n="projects-link-details">Details →</a>
         </div>
         <div class="proj-card reveal delay-3">
           <svg class="proj-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -2807,9 +2853,9 @@
           </svg>
           <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">IoT</span><span
               class="proj-tag">YOLO</span></div>
-          <h3>Smart Home — Fall Detection</h3>
+          <h3 data-i18n="projects-title-fall">Smart Home — Fall Detection</h3>
           <p>AI & IoT fall detection for motor-impaired individuals — real-time detection and response.</p>
-          <a href="#" onclick="openProjectModal('smart-home-fall', event)" class="p-link">Details →</a>
+          <a href="#" onclick="openProjectModal('smart-home-fall', event)" class="p-link" data-i18n="projects-link-details">Details →</a>
         </div>
         <div class="proj-card reveal delay-1">
           <svg class="proj-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -2821,9 +2867,9 @@
             <path d="M12 8v1" />
           </svg>
           <div class="proj-tags"><span class="proj-tag">Leadership</span><span class="proj-tag">Community</span></div>
-          <h3>Charity Meals</h3>
-          <p>Project Lead for "Charity Meals" charity campaign — distributing 200+ free hot meals and fundraising at FPT Can Tho.</p>
-          <a href="#" onclick="openProjectModal('charity-meals', event)" class="p-link">Details →</a>
+          <h3 data-i18n="projects-title-charity">Charity Meals</h3>
+          <p data-i18n="projects-desc-charity">Project Lead for "Charity Meals" charity campaign — distributing 200+ free hot meals and fundraising at FPT Can Tho.</p>
+          <a href="#" onclick="openProjectModal('charity-meals', event)" class="p-link" data-i18n="projects-link-details">Details →</a>
         </div>
         <div class="proj-card reveal delay-2">
           <svg class="proj-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -2833,9 +2879,9 @@
             <path d="M12 7l1 2.5L15.5 10 13 11 12 13.5 11 11 8.5 10 11 9.5z" fill="var(--lime)" stroke="none" />
           </svg>
           <div class="proj-tags"><span class="proj-tag">HTML/JS</span><span class="proj-tag">AI API</span></div>
-          <h3>AI Study Toolkit</h3>
-          <p>Ed-tech ecosystem: 306-question quiz, Japanese flashcard app, statistics calculator with step-by-step AI explanations.</p>
-          <a href="#" onclick="openProjectModal('study-kit-ai', event)" class="p-link">Details →</a>
+          <h3 data-i18n="projects-title-toolkit">AI Study Toolkit</h3>
+          <p data-i18n="projects-desc-toolkit">Ed-tech ecosystem: 306-question quiz, Japanese flashcard app, statistics calculator with step-by-step AI explanations.</p>
+          <a href="#" onclick="openProjectModal('study-kit-ai', event)" class="p-link" data-i18n="projects-link-details">Details →</a>
         </div>
         <div class="proj-card reveal delay-3">
           <svg class="proj-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -2848,14 +2894,14 @@
           </svg>
           <div class="proj-tags"><span class="proj-tag">Spring Boot</span><span class="proj-tag">MySQL</span><span
               class="proj-tag">Thymeleaf</span></div>
-          <h3>Hotel Management System</h3>
-          <p>Comprehensive hotel platform: real-time room status, booking workflow, automated billing, and revenue reports.</p>
-          <a href="#" onclick="openProjectModal('hotel-management', event)" class="p-link">Details →</a>
+          <h3 data-i18n="projects-title-hotel">Hotel Management System</h3>
+          <p data-i18n="projects-desc-hotel">Comprehensive hotel platform: real-time room status, booking workflow, automated billing, and revenue reports.</p>
+          <a href="#" onclick="openProjectModal('hotel-management', event)" class="p-link" data-i18n="projects-link-details">Details →</a>
         </div>
         <div class="proj-card proj-cta reveal delay-1">
-          <div class="proj-cta-label">Next Project</div>
-          <p>Have an idea or need a developer for your next tech project?</p>
-          <a href="#contact" class="btn btn-ghost" style="font-size:.56rem">Let's talk →</a>
+          <div class="proj-cta-label" data-i18n="projects-cta-label">Next Project</div>
+          <p data-i18n="projects-cta-desc">Have an idea or need a developer for your next tech project?</p>
+          <a href="#contact" class="btn btn-ghost" style="font-size:.56rem" data-i18n="projects-cta-btn">Let's talk →</a>
         </div>
       </div>
     </div>
@@ -2882,13 +2928,13 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-num">04</span>
-        <h2 class="section-title">Discussion</h2>
+        <h2 class="section-title" data-i18n="section-discussion">Discussion</h2>
         <div class="section-line"></div>
       </div>
       <div class="disc-grid">
         <div class="reveal disc-form-wrapper">
-          <div class="form-heading">Join the Discussion</div>
-          <p class="disc-desc">Share your thoughts, give feedback on my projects, or connect for future technology collaboration.</p>
+          <div class="form-heading" data-i18n="discussion-heading">Join the Discussion</div>
+          <p class="disc-desc" data-i18n="discussion-desc">Share your thoughts, give feedback on my projects, or connect for future technology collaboration.</p>
           <form onsubmit="submitComment(event)">
             <div class="avatar-selector">
               <label
@@ -2900,18 +2946,18 @@
               <div class="avatar-option" data-avatar="💡" onclick="selectAvatar(this)">💡</div>
             </div>
             <div class="disc-input-box">
-              <input type="text" id="commentAuthor" placeholder="Your name..." required>
+              <input type="text" id="commentAuthor" placeholder="Your name..." data-i18n-placeholder="discussion-placeholder-name" required>
               <textarea id="commentText" placeholder="Leave your comment or question here..."
                 required></textarea>
             </div>
             <button type="submit" class="disc-submit-btn">
-              <span>Post Comment</span>
+              <span data-i18n="discussion-btn-post">Post Comment</span>
             </button>
           </form>
         </div>
         <div class="reveal delay-2">
           <div class="form-heading" style="display:flex; justify-content:space-between; align-items:center;">
-            <span>Comments (<span id="commentCount">0</span>)</span>
+            <span data-i18n="discussion-comments-count"><span data-i18n="discussion-comments-count">Comments (<span id="commentCount">0</span>)</span></span>
           </div>
           <div class="comments-list" id="commentsList">
             <!-- Comments list populated dynamically -->
@@ -2926,14 +2972,12 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-num">05</span>
-        <h2 class="section-title">Contact</h2>
+        <h2 class="section-title" data-i18n="section-contact">Contact</h2>
         <div class="section-line"></div>
       </div>
       <div class="contact-grid">
         <div class="reveal">
-          <div class="contact-headline">
-            Let's<br><em>build</em><br>something.
-          </div>
+          <div class="contact-headline" data-i18n="contact-headline">Let's<br><em>build</em><br>something.</div>
           <p class="contact-desc">I am always open to collaboration — from small web apps to long-term research. If you have an idea or question, feel free to reach out.</p>
           <div class="contact-links">
             <a href="mailto:inhcq.ce190593@gmail.com" class="c-link">
@@ -2959,20 +3003,20 @@
           </div>
         </div>
         <div class="reveal delay-2">
-          <div class="form-heading">Send a Direct Message</div>
+          <div class="form-heading" data-i18n="contact-form-heading">Send a Direct Message</div>
           <form onsubmit="submitForm(event)">
             <div class="form-box">
-              <div class="form-field"><label>Your Name</label><input type="text" placeholder="John Doe" required>
+              <div class="form-field"><label data-i18n="contact-label-name">Your Name</label><input type="text" placeholder="John Doe" data-i18n-placeholder="contact-placeholder-name" required>
               </div>
               <div class="form-field"><label>Email</label><input type="email" placeholder="example@email.com" required>
               </div>
-              <div class="form-field"><label>Subject</label><input type="text"
+              <div class="form-field"><label data-i18n="contact-label-subject">Subject</label><input type="text"
                   placeholder="Web design, collaboration, research..."></div>
-              <div class="form-field"><label>Message</label><textarea
+              <div class="form-field"><label data-i18n="contact-label-message">Message</label><textarea
                   placeholder="Hi Inh, I would like to..."></textarea></div>
             </div>
             <button type="submit" class="form-submit" id="fsub">
-              <span>Send Message</span><span>→</span>
+              <span data-i18n="contact-btn-send">Send Message</span><span>→</span>
             </button>
           </form>
         </div>
@@ -3133,36 +3177,47 @@
       }
     };
 
-    function openProjectModal(id, event) {
+        function openProjectModal(id, event) {
       if (event) event.preventDefault();
-      const data = projectData[id];
-      if (!data) return;
+      const rawData = projectData[id];
+      if (!rawData) return;
+
+      const currentLang = localStorage.getItem('portfolio_lang') || 'en';
+
+      const title = getTranslatedProjectProp(id, 'title', currentLang);
+      const category = getTranslatedProjectProp(id, 'category', currentLang);
+      const duration = getTranslatedProjectProp(id, 'duration', currentLang);
+      const role = getTranslatedProjectProp(id, 'role', currentLang);
+      const desc = getTranslatedProjectProp(id, 'desc', currentLang);
+      const tags = rawData.tags;
+      const github = rawData.github;
+      const demo = rawData.demo;
 
       const content = `
     <div class="modal-tags">
-      ${data.tags.map(t => `<span class="p-tag">${t}</span>`).join('')}
+      ${tags.map(t => `<span class="p-tag">${t}</span>`).join('')}
     </div>
-    <h3 class="modal-title">${data.title}</h3>
+    <h3 class="modal-title">${title}</h3>
     <div class="modal-meta-grid">
       <div class="modal-meta-item">
-        <span class="modal-meta-label">Category</span>
-        <span class="modal-meta-val">${data.category}</span>
+        <span class="modal-meta-label" data-i18n="modal-category">${getTranslation('modal-category', currentLang)}</span>
+        <span class="modal-meta-val">${category}</span>
       </div>
       <div class="modal-meta-item">
-        <span class="modal-meta-label">Duration</span>
-        <span class="modal-meta-val">${data.duration}</span>
+        <span class="modal-meta-label" data-i18n="modal-duration">${getTranslation('modal-duration', currentLang)}</span>
+        <span class="modal-meta-val">${duration}</span>
       </div>
       <div class="modal-meta-item">
-        <span class="modal-meta-label">Role</span>
-        <span class="modal-meta-val">${data.role}</span>
+        <span class="modal-meta-label" data-i18n="modal-role">${getTranslation('modal-role', currentLang)}</span>
+        <span class="modal-meta-val">${role}</span>
       </div>
     </div>
     <div class="modal-body">
-      ${data.desc}
+      ${desc}
     </div>
     <div class="modal-footer">
-      <a href="${data.github}" class="btn btn-ghost" style="font-size: 0.55rem; padding: 0.6rem 1.2rem;">Github →</a>
-      <a href="${data.demo}" class="btn btn-primary" style="font-size: 0.55rem; padding: 0.6rem 1.2rem;"><span>Live Demo</span></a>
+      <a href="${github}" class="btn btn-ghost" style="font-size: 0.55rem; padding: 0.6rem 1.2rem;">Github →</a>
+      <a href="${demo}" class="btn btn-primary" style="font-size: 0.55rem; padding: 0.6rem 1.2rem;"><span>Live Demo</span></a>
     </div>
   `;
 
@@ -3244,7 +3299,7 @@
           </button>
           ${isAdmin ? `
           <button onclick="deleteComment(${c.id})" class="comment-delete-btn" style="background:none; border:none; color:var(--dim); cursor:pointer; font-family:var(--f-mono); font-size:0.55rem; transition:color 0.2s; padding:0; margin-left:1rem;">
-            🗑️ <span>Delete</span>
+            🗑️ <span>${getTranslation('js-delete-btn', currentLang)}</span>
           </button>
           ` : ''}
         </div>
@@ -3287,7 +3342,9 @@
       // Custom button feedback
       const btn = e.target.querySelector('.disc-submit-btn');
       const oldText = btn.innerHTML;
-      btn.innerHTML = '<span>Sent ✓</span>';
+      const currentLang = localStorage.getItem('portfolio_lang') || 'en';
+      const feedbackText = getTranslation('js-sent-feedback', currentLang);
+      btn.innerHTML = `<span>${feedbackText}</span>`;
       btn.style.background = '#8acc00';
       setTimeout(() => {
         btn.innerHTML = oldText;
@@ -3314,7 +3371,9 @@
     }
 
     function deleteComment(id) {
-      if (confirm('Are you sure you want to delete this comment?')) {
+      const currentLang = localStorage.getItem('portfolio_lang') || 'en';
+      const confirmText = getTranslation('js-delete-confirm', currentLang);
+      if (confirm(confirmText)) {
         let comments = JSON.parse(localStorage.getItem('portfolio_comments') || '[]');
         comments = comments.filter(c => c.id !== id);
         localStorage.setItem('portfolio_comments', JSON.stringify(comments));
@@ -3343,13 +3402,322 @@
     // Initial comment load
     loadComments();
 
-    function submitForm(e) {
+    
+/* ── Multi-language i18n Logic ── */
+const translations = {
+  'nav-about': { en: 'About', vi: 'Giới thiệu', jp: '自己紹介' },
+  'nav-projects': { en: 'Projects', vi: 'Dự án', jp: 'プロジェクト' },
+  'nav-skills': { en: 'Skills', vi: 'Kỹ năng', jp: 'スキル' },
+  'nav-discussion': { en: 'Discussion', vi: 'Thảo luận', jp: 'ディスカッション' },
+  'nav-contact': { en: 'Contact', vi: 'Liên hệ', jp: 'お問い合わせ' },
+  'nav-badge-text': { en: 'Available for Projects', vi: 'Sẵn sàng nhận dự án', jp: 'プロジェクト受付中' },
+  
+  'hero-greeting': { en: "Hello, I'm", vi: 'Xin chào, tôi là', jp: 'こんにちは、私は' },
+  'hero-subtitle': { en: 'Developer & Designer · AI / IoT Researcher<br>FPT University Can Tho', vi: 'Developer & Designer · AI / IoT Researcher<br>FPT University Cần Thơ', jp: 'デベロッパー＆デザイナー · AI/IoT研究者<br>FPT大学 カントー校' },
+  'hero-desc': { en: 'Building smart web applications, researching AI/ML applied to agriculture & aquaculture in the Mekong Delta. Available for freelance web design, IoT systems, and management software.', vi: 'Xây dựng ứng dụng web thông minh, nghiên cứu AI/ML ứng dụng nông nghiệp & thủy sản Đồng bằng Sông Cửu Long. Nhận thiết kế web, hệ thống IoT và phần mềm quản lý.', jp: 'スマートなWebアプリケーションの構築、メコンデルタにおける農業および水産業向けのAI/ML研究。フリーランス of Webデザイン、IoTシステム、管理ソフトウェアの受託開発に対応。' },
+  'hero-btn-view': { en: 'View Projects', vi: 'Xem dự án', jp: 'プロジェクトを見る' },
+  'hero-btn-contact': { en: 'Contact Me', vi: 'Liên hệ', jp: 'お問い合わせ' },
+  'hero-stat-experience': { en: 'Years Experience', vi: 'Năm học', jp: '学年' },
+  'hero-stat-projects': { en: 'Completed Projects', vi: 'Dự án', jp: 'プロジェクト' },
+  'hero-stat-papers': { en: 'Research Papers', vi: 'Nghiên cứu khoa học', jp: '研究論文' },
+  
+  'section-about': { en: 'About Me', vi: 'Giới thiệu', jp: '自己紹介' },
+  'about-role': { en: 'Software Engineer & Designer', vi: 'Software Engineer & Designer', jp: 'ソフトウェアエンジニア＆デザイナー' },
+  'about-label-focus': { en: 'Focus', vi: 'Lĩnh vực', jp: '専門分野' },
+  'about-val-focus': { en: 'Software Engineering', vi: 'Kỹ thuật Phần mềm', jp: 'ソフトウェアエンジニアリング' },
+  'about-label-location': { en: 'Location', vi: 'Nơi làm việc', jp: '勤務地' },
+  'about-val-location': { en: 'Can Tho, Vietnam', vi: 'Cần Thơ, Việt Nam', jp: 'ベトナム、カントー' },
+  'about-label-education': { en: 'Education', vi: 'Học vấn', jp: '学歴' },
+  'about-val-education': { en: 'FPT University Can Tho', vi: 'Đại học FPT Cần Thơ', jp: 'FPT大学 カントー校' },
+  'about-label-status': { en: 'Status', vi: 'Trạng thái', jp: 'ステータス' },
+  'about-val-status': { en: 'Available for Projects', vi: 'Sẵn sàng nhận dự án', jp: 'プロジェクト受付中' },
+  
+  'about-heading-bio': { en: 'Biography', vi: 'Tóm tắt tiểu sử', jp: '略歴' },
+  'about-bio-p1': {
+    en: "Hi! I'm Chau Quoc Inh, a third-year Software Engineering student at FPT University Can Tho. Driven by a deep passion for technology, I focus on Computer Vision (AI/ML) research and backend web systems using Java Spring Boot.",
+    vi: 'Chào bạn! Tôi là Châu Quốc Inh, sinh viên năm 3 chuyên ngành Kỹ thuật Phần mềm tại Đại học FPT Cần Thơ. Với niềm đam mê lớn dành cho công nghệ, tôi tập trung nghiên cứu lĩnh vực Trí tuệ nhân tạo (AI/ML, Thị giác máy tính) và phát triển các hệ thống Backend bằng Java Spring Boot.',
+    jp: 'こんにちは！FPT大学カントー校ソフトウェアエンジニアリング学科3年のチャウ・クオック・インと申します。テクノロジーへの強い情熱を持ち、コンピュータビジョン（AI/ML）の研究やJava Spring Bootを用いたバックエンドWebシステムの開発に注力しています。'
+  },
+  'about-bio-p2': {
+    en: "I enjoy solving real-world local problems using smart technologies — such as agricultural disease diagnosis with MekongCrop AI or smart aquaculture monitoring with Smart Aqua.",
+    vi: 'Tôi yêu thích việc giải quyết các bài toán thực tiễn của địa phương bằng công nghệ thông minh — ví dụ như hệ thống chẩn đoán bệnh cây trồng MekongCrop AI hay hệ thống giám sát ao tôm thông minh Smart Aqua.',
+    jp: 'MekongCrop AIによる農作物の病気診断や、Smart Aquaによるスマート水産養殖監視など、スマートテクノロジーを用いて地域の現実的な課題を解決することを楽しんでいます。'
+  },
+  'about-bio-p3': {
+    en: "Besides research, I accept freelance projects: advertising & e-commerce websites, enterprise management software, and IoT hardware for aquaculture — from concept to final product.",
+    vi: 'Ngoài nghiên cứu, tôi nhận dự án thực tế: thiết kế web quảng cáo & thương mại điện tử, phần mềm quản lý doanh nghiệp, và phần cứng IoT cho hệ thống nuôi trồng thủy sản — từ ý tưởng đến sản phẩm hoàn chỉnh.',
+    jp: '研究のほかに、プロモーション用WebサイトやECサイト、企業管理ソフトウェア、水産養殖用のIoTハードウェアなどのフリーランス開発案件を受託しています。コンセプト設計から完成品まで対応可能です。'
+  },
+  
+  'about-heading-services': { en: 'Services Provided', vi: 'Dịch vụ cung cấp', jp: '提供サービス' },
+  'about-service-backend': { en: 'Backend Web Development', vi: 'Phát triển Web Backend', jp: 'バックエンドWeb開発' },
+  'about-service-ai': { en: 'AI & Computer Vision Integration', vi: 'Tích hợp AI & Thị giác máy tính', jp: 'AIおよびコンピュータビジョンの統合' },
+  'about-service-iot': { en: 'IoT & Embedded Systems', vi: 'Hệ thống IoT', jp: 'IoTおよび組み込みシステム開発' },
+  'about-service-uiux': { en: 'Web UI/UX Design', vi: 'Thiết kế Web UI/UX', jp: 'Web UI/UXデザイン' },
+  
+  'section-skills': { en: 'Skills', vi: 'Kỹ năng', jp: 'スキル' },
+  'skills-desc-backend': { en: 'System development, database management, and API design.', vi: 'Xây dựng API, hệ thống server-side và cơ sở dữ liệu quan hệ.', jp: 'システム開発、データベース管理、およびAPI設計。' },
+  'skills-desc-frontend': { en: 'Beautiful, responsive layouts and premium user experience.', vi: 'Giao diện đẹp, responsive, trải nghiệm người dùng tốt.', jp: '美しくレスポンシブなレイアウトと優れたユーザー体験。' },
+  'skills-desc-ai': { en: 'Machine learning, computer vision, and smart hardware.', vi: 'Machine learning, computer vision, phần cứng thông minh.', jp: '機械学習、コンピュータビジョン、スマートハードウェア。' },
+  
+  'section-projects': { en: 'Projects', vi: 'Dự án', jp: 'プロジェクト' },
+  'projects-featured-badge': { en: 'Featured Research', vi: 'Nghiên cứu nổi bật', jp: '注目の研究' },
+  'projects-featured-desc': {
+    en: 'Multimodal agricultural disease diagnosis system for the Mekong Delta — combining CNN leaf image processing (rice, mango, durian) with weather and geographic metadata. Heading for ResFes 2026.',
+    vi: 'Hệ thống nhận diện bệnh cây trồng đa phương thức cho vùng Đồng bằng Sông Cửu Long — kết hợp CNN xử lý ảnh lá cây (lúa, xoài, sầu riêng) với dữ liệu thời tiết và metadata địa lý. Hướng đến ResFes 2026.',
+    jp: 'メコンデルタ向けのマルチモーダル農作物病気診断システム。CNNによる葉の画像処理（稲、マンゴー、ドリアン）に気象データと地理メタデータを統合。ResFes 2026に向けて開発中。'
+  },
+  'projects-link-view': { en: 'View Details →', vi: 'Xem chi tiết →', jp: '詳細を見る →' },
+  'projects-link-details': { en: 'Details →', vi: 'Chi tiết →', jp: '詳細 →' },
+  
+  'projects-title-comp': { en: 'THPT Competition Management', vi: 'Quản lý Thi đua THPT', jp: '高校競争管理システム' },
+  'projects-desc-comp': {
+    en: 'Web application to manage student competitions at Cai Nuoc High School — registration, scoring, ranking, and automated Excel reporting.',
+    vi: 'Ứng dụng web quản lý cuộc thi học sinh THPT Cái Nước — đăng ký, chấm điểm, xếp hạng, xuất báo cáo Excel tự động.',
+    jp: 'カイヌオック高校における生徒の競技会管理Webアプリケーション。登録、採点、順位付け、Excelレポート自動出力に対応。'
+  },
+  'projects-title-aqua': { en: 'Smart Aqua — Shrimp Pond IoT', vi: 'Smart Aqua — Ao Tôm', jp: 'Smart Aqua — エビ池IoT' },
+  'projects-desc-aqua': {
+    en: 'IoT system monitoring shrimp pond environment in real-time combined with AI disease identification and mobile alerts.',
+    vi: 'Hệ thống IoT giám sát môi trường ao nuôi tôm realtime kết hợp AI nhận diện bệnh học, cảnh báo sớm qua điện thoại.',
+    jp: 'エビ養殖池の環境をリアルタイムで監視するIoTシステム。AIによる病気特定とモバイルアラートを統合。'
+  },
+  'projects-title-fall': { en: 'Smart Home — Fall Detection', vi: 'Smart Home — Té Ngã', jp: 'スマートホーム — 転倒検知' },
+  'projects-desc-fall': {
+    en: 'AI & IoT fall detection for motor-impaired individuals — real-time detection and response.',
+    vi: 'AI & IoT cảnh báo té ngã cho người khuyết tật vận động — phát hiện và phản ứng thời gian thực.',
+    jp: '運動機能障害のある方向けのAI＆IoT転倒検知システム。リアルタイム検知と緊急対応。'
+  },
+  'projects-title-charity': { en: 'Charity Meals', vi: 'Bữa Cơm Thiện Nguyện', jp: 'チャリティミール' },
+  'projects-desc-charity': {
+    en: 'Project Lead for "Charity Meals" charity campaign — distributing 200+ free hot meals and fundraising at FPT Can Tho.',
+    vi: 'Nhóm trưởng chiến dịch thiện nguyện "Bữa Cơm Yêu Thương" — phân phát 200+ suất cơm miễn phí, gây quỹ tại FPT Cần Thơ.',
+    jp: '「Bữa Cơm Yêu Thương」チャリティキャンペーンのプロジェクトリーダー。FPTカントーで200食以上の無料の温かい食事を配布し、募金活動を実施。'
+  },
+  'projects-title-toolkit': { en: 'AI Study Toolkit', vi: 'Bộ Công cụ Học Tập AI', jp: 'AI学習ツールキット' },
+  'projects-desc-toolkit': {
+    en: 'Ed-tech ecosystem: 306-question quiz, Japanese flashcard app, statistics calculator with step-by-step AI explanations.',
+    vi: 'Hệ sinh thái app học tập: quiz 306 câu, flashcard Nhật ngữ, calculator thống kê với AI giải thích từng bước.',
+    jp: 'エドテック・エコシステム：306問のクイズ、日本語フラッシュカードアプリ、AIによるステップバイステップ解説付きの統計計算機。'
+  },
+  'projects-title-hotel': { en: 'Hotel Management System', vi: 'Hotel Management', jp: 'ホテル管理システム' },
+  'projects-desc-hotel': {
+    en: 'Comprehensive hotel platform: real-time room status, booking workflow, automated billing, and revenue reports.',
+    vi: 'Nền tảng khách sạn toàn diện: tình trạng phòng real-time, quy trình đặt phòng, thanh toán tự động và báo cáo doanh thu.',
+    jp: '包括的なホテル管理プラットフォーム。リアルタイムの客室状況、予約ワークフロー、自動請求、売上レポートに対応。'
+  },
+  
+  'projects-cta-label': { en: 'Next Project', vi: 'Dự án tiếp theo', jp: '次のプロジェクト' },
+  'projects-cta-desc': {
+    en: 'Have an idea or need a developer for your next tech project?',
+    vi: 'Có ý tưởng hoặc cần người thực hiện dự án công nghệ?',
+    jp: '開発アイデアをお持ちですか？または次のテックプロジェクトでエンジニアをお探しですか？'
+  },
+  'projects-cta-btn': { en: "Let's talk →", vi: 'Thảo luận →', jp: '相談する →' },
+  
+  'section-discussion': { en: 'Discussion', vi: 'Thảo luận', jp: 'ディスカッション' },
+  'discussion-heading': { en: 'Join the Discussion', vi: 'Tham gia thảo luận', jp: 'ディスカッションに参加する' },
+  'discussion-desc': {
+    en: 'Share your thoughts, give feedback on my projects, or connect for future technology collaboration.',
+    vi: 'Chia sẻ ý kiến, góp ý cho các nghiên cứu/dự án của tôi hoặc kết nối cùng hợp tác phát triển công nghệ.',
+    jp: '私のプロジェクトに対するご意見やフィードバックを共有したり、将来の技術的なコラボレーションについてお気軽にご連絡ください。'
+  },
+  'discussion-label-avatar': { en: 'Choose Avatar', vi: 'Chọn Avatar', jp: 'アバターを選択' },
+  'discussion-placeholder-name': { en: 'Your name...', vi: 'Tên của bạn...', jp: 'お名前...' },
+  'discussion-placeholder-comment': { en: 'Leave your comment or question here...', vi: 'Để lại ý kiến hoặc câu hỏi của bạn tại đây...', jp: 'コメントや質問をここに入力してください...' },
+  'discussion-btn-post': { en: 'Post Comment', vi: 'Gửi bình luận', jp: 'コメントを送信' },
+  'discussion-comments-count': { en: 'Comments ({count})', vi: 'Bình luận ({count})', jp: 'コメント ({count})' },
+  'discussion-empty': { en: 'No discussions yet. Be the first to leave a comment!', vi: 'Chưa có thảo luận nào. Hãy để lại ý kiến đầu tiên!', jp: 'ディスカッションはまだありません。最初のコメントを投稿しましょう！' },
+  
+  'section-contact': { en: 'Contact', vi: 'Liên hệ', jp: 'お問い合わせ' },
+  'contact-headline': { en: "Let's<br><em>build</em><br>something.", vi: 'Hãy cùng<br><em>xây dựng</em><br>thứ gì đó.', jp: '一緒に<br><em>何かを</em><br>作りましょう。' },
+  'contact-desc': {
+    en: "I'm always open to collaboration — from small web apps to long-term research. If you have an idea or question, feel free to reach out.",
+    vi: 'Tôi luôn mở với cơ hội cộng tác — từ dự án web nhỏ đến nghiên cứu dài hạn. Nếu có ý tưởng hoặc câu hỏi, đừng ngại liên hệ.',
+    jp: '小規模なWebアプリから長期的な研究プロジェクトまで、コラボレーションの機会を常に歓迎しています。アイデアやご質問があれば、お気軽にご連絡ください。'
+  },
+  'contact-form-heading': { en: 'Send a Direct Message', vi: 'Gửi tin nhắn trực tiếp', jp: 'メッセージを直接送信する' },
+  'contact-label-name': { en: 'Your Name', vi: 'Tên của bạn', jp: 'お名前' },
+  'contact-placeholder-name': { en: 'John Doe', vi: 'Nguyễn Văn A', jp: '山田 太郎' },
+  'contact-label-subject': { en: 'Subject', vi: 'Chủ đề', jp: '件名' },
+  'contact-placeholder-subject': { en: 'Web design, collaboration, research...', vi: 'Thiết kế web, hợp tác, nghiên cứu...', jp: 'Webデザイン、コラボレーション、共同研究など...' },
+  'contact-label-message': { en: 'Message', vi: 'Nội dung', jp: 'メッセージ' },
+  'contact-placeholder-message': { en: 'Hi Inh, I would like to...', vi: 'Xin chào Inh, tôi muốn...', jp: 'インさん、こんにちは。ぜひ...' },
+  'contact-btn-send': { en: 'Send Message', vi: 'Gửi tin nhắn', jp: 'メッセージを送信' },
+  
+  'modal-category': { en: 'Category', vi: 'Lĩnh vực', jp: 'カテゴリー' },
+  'modal-duration': { en: 'Duration', vi: 'Thời gian', jp: '期間' },
+  'modal-role': { en: 'Role', vi: 'Vai trò', jp: '役割' },
+  
+  'js-sent-feedback': { en: 'Sent ✓', vi: 'Đã gửi ✓', jp: '送信完了 ✓' },
+  'js-delete-confirm': { en: 'Are you sure you want to delete this comment?', vi: 'Are you sure you want to delete this comment?', jp: 'このコメントを削除してもよろしいですか？' },
+  'js-delete-btn': { en: 'Delete', vi: 'Xóa', jp: '削除' }
+};
+
+const projectTranslations = {
+  'mekongcrop': {
+    title: { en: 'MekongCrop AI', vi: 'MekongCrop AI', jp: 'MekongCrop AI' },
+    category: { en: 'RESEARCH & ML', vi: 'RESEARCH & ML', jp: 'RESEARCH & ML' },
+    duration: { en: '10/2025 - Present', vi: '10/2025 - Nay', jp: '2025/10 - 現在' },
+    role: { en: 'Lead Researcher (AI Dev)', vi: 'Nghiên cứu viên chính (AI Dev)', jp: '主任研究員 (AI開発)' },
+    desc: {
+      en: `<p><strong>MekongCrop AI</strong> is a key research project addressing automated agricultural disease diagnosis in the Mekong Delta. The system focuses on identifying diseases on rice leaves (blast, blight), mango leaves (anthracnose), and durian leaves (canker) based on field-captured photos.</p><h4>Tech & Solutions</h4><ul><li>Designed optimized CNN architectures capable of running on edge mobile devices.</li><li>Applied Transfer Learning using MobileNetV3 to achieve 94.2% accuracy under low-light conditions.</li><li>Integrated real-time weather and geographic metadata via APIs to forecast disease spread risk.</li></ul><h4>Key Results</h4><p>The project is currently finalizing its scientific report for the ResFes 2026 Student Research Conference at FPT University Can Tho. A mobile prototype has helped 30+ farmers in Phong Dien, Can Tho, early-detect rice blast disease.</p>`,
+      vi: `<p><strong>MekongCrop AI</strong> là dự án nghiên cứu khoa học trọng điểm nhằm giải quyết vấn đề chẩn đoán bệnh hại thực vật tự động ở vùng Đồng bằng Sông Cửu Long. Hệ thống tập trung nhận diện nhanh chóng các bệnh trên lá lúa (đạo ôn, bạc lá), lá xoài (thán thư), và lá sầu riêng (xì mủ) dựa trên hình ảnh thực tế chụp tại ruộng.</p><h4>Công nghệ & Giải pháp</h4><ul><li>Xây dựng kiến trúc Convolutional Neural Network (CNN) tối ưu hóa chạy được trên thiết bị di động biên (Edge devices).</li><li>Kết hợp kỹ thuật Transfer Learning (sử dụng MobileNetV3) giúp tăng độ chính xác lên 94.2% trong điều kiện thiếu sáng.</li><li>Tích hợp Metadata địa lý & thời tiết thời gian thực thông qua API để dự báo xác suất lây lan dịch bệnh theo vùng.</li></ul><h4>Kết quả đạt được</h4><p>Dự án hiện đang trong giai đoạn hoàn thiện báo cáo khoa học để tham gia Hội nghị Nghiên cứu khoa học học sinh sinh viên ResFes 2026 tại FPT University Cần Thơ. Bản thử nghiệm ứng dụng di động đã giúp 30+ hộ dân tại Phong Điền, Cần Thơ phát hiện sớm bệnh đạo ôn trên lúa.</p>`,
+      jp: `<p><strong>MekongCrop AI</strong>は、メコンデルタにおける農作物の病気自動診断に取り組む重要研究プロジェクトです。現場で撮影された葉の写真に基づき、稲（いもち病、白葉枯病）、マンゴー（炭疽病）、ドリアン（潰瘍病）の病気を迅速に特定します。</p><h4>技術とソリューション</h4><ul><li>エッジモバイルデバイスで動作可能な、最適化されたCNNアーキテクチャの設計。</li><li>MobileNetV3を用いた転移学習の適用により、低照度環境下で94.2%の精度を達成。</li><li>リアルタイムの気象および地理メタデータをAPI経由で統合し、病気の拡大リスクを予測。</li></ul><h4>主な成果</h4><p>FPT大学カントー校で開催される「ResFes 2026」学生研究カンファレンス向けの論文を執筆中。モバイルアプリの試作品は、すでにカントー市フォンディエン郡の30以上の農家でいもち病の早期発見に貢献しています。</p>`
+    }
+  },
+  'thpt-thi-dua': {
+    title: { en: 'THPT Competition Management', vi: 'Quản lý Thi đua THPT', jp: '高校競争管理システム' },
+    category: { en: 'WEB APP', vi: 'WEB APP', jp: 'WEB APP' },
+    duration: { en: '06/2025 - 08/2025', vi: '06/2025 - 08/2025', jp: '2025/06 - 2025/08' },
+    role: { en: 'Fullstack Developer', vi: 'Fullstack Developer', jp: 'フルスタック開発者' },
+    desc: {
+      en: `<p>Internal scoring and ranking web app for Cai Nuoc High School. Digitized traditional paper-based grading to eliminate calculation errors and improve transparency.</p><h4>Key Features</h4><ul><li><strong>Multi-level authorization:</strong> School administrators review, Youth Union grades directly, and class leaders monitor and appeal.</li><li><strong>Automated calculations:</strong> Applied custom deduction scoring rules dynamically by week, month, and semester.</li><li><strong>Report export:</strong> Utilized Apache POI library to export automated rank sheets directly to Excel formatting with one click.</li></ul><h4>Tech Stack</h4><p>Backend built on Java Spring Boot (Spring Security, Spring Data JPA), optimized MySQL database, dynamic Thymeleaf frontend rendering with Bootstrap CSS and interactive vanilla JS.</p>`,
+      vi: `<p>Hệ thống phần mềm quản lý và xếp hạng phong trào thi đua nội bộ dành riêng cho trường THPT Cái Nước. Giúp số hóa hoàn toàn quy trình chấm điểm thủ công bằng giấy truyền thống, giảm thiểu sai sót và tăng tính minh bạch giữa các chi đoàn lớp.</p><h4>Tính năng nổi bật</h4><ul><li><strong>Phân quyền đa cấp:</strong> Ban giám hiệu kiểm duyệt, Đoàn trường chấm điểm thi đua trực tiếp, lớp trưởng theo dõi và khiếu nại.</li><li><strong>Tính toán tự động:</strong> Áp dụng công thức trừ điểm vi phạm linh hoạt theo tuần, tháng, học kỳ.</li><li><strong>Xuất bản báo cáo:</strong> Tích hợp thư viện Apache POI xuất báo cáo xếp hạng tự động định dạng Excel để lưu trữ trực tiếp chỉ với 1 click.</li></ul><h4>Công nghệ sử dụng</h4><p>Backend phát triển trên nền tảng Java Spring Boot (Spring Security, Spring Data JPA), cơ sở dữ liệu MySQL tối ưu hóa truy vấn, Frontend rendered động bằng Thymeleaf kết hợp Bootstrap CSS và JavaScript xử lý tương tác thời gian thực.</p>`,
+      jp: `<p>カイヌオック高校向けの競争採点・順位付けシステム。従来の紙ベースの採点プロセスをデジタル化し、計算ミスを排除して透明性を向上させました。</p><h4>主な機能</h4><ul><li><strong>マルチレベル権限：</strong>管理者による承認、ユースユニオンによる直接採点、クラスリーダーによる監視と異議申し立て。</li><li><strong>自動計算：</strong>週、月、学期ごとにカスタム減点ルールを動的に適用。</li><li><strong>レポートエクスポート：</strong>Apache POIライブラリを使用し、ワンクリックで自動フォーマットされたExcelの順位シートを出力。</li></ul><h4>技術スタック</h4><p>Java Spring Boot（Spring Security, Spring Data JPA）を使用したバックエンド、最適化されたMySQLデータベース、Bootstrap CSSと動的なThymeleafテンプレートを用いたフロントエンド、インタラクティブなVanilla JS。</p>`
+    }
+  },
+  'smart-aqua': {
+    title: { en: 'Smart Aqua — Shrimp Pond IoT', vi: 'Smart Aqua — Ao Tôm', jp: 'Smart Aqua — エビ池IoT' },
+    category: { en: 'AI & IOT SYSTEM', vi: 'AI & IOT SYSTEM', jp: 'AI & IOT SYSTEM' },
+    duration: { en: '09/2025 - 12/2025', vi: '09/2025 - 12/2025', jp: '2025/09 - 2025/12' },
+    role: { en: 'Hardware & AI Integration', vi: 'Hardware & AI Integration', jp: 'ハードウェアおよびAI統合' },
+    desc: {
+      en: `<p>An automated water quality monitoring and shrimp disease diagnosis system powered by IoT and Artificial Intelligence. It addresses major risks in industrial shrimp farming in Bac Lieu and Ca Mau.</p><h4>System Architecture</h4><ul><li><strong>Data Collection (IoT Node):</strong> Utilized ESP32 to connect pH, temperature, DO, and salinity sensors, streaming data to Firebase Realtime Database.</li><li><strong>Artificial Intelligence:</strong> Deployed a CNN image classification model on cloud servers to detect early symptoms of White Spot and Yellow Head diseases.</li><li><strong>Emergency Alerts:</strong> Automatically triggers mobile push notifications when biochemistry water metrics exceed safe thresholds.</li></ul><h4>Impact</h4><p>Helps farmers reduce the risk of crop loss by 40% due to unexpected disease outbreaks through 24/7 early-warning monitoring.</p>`,
+      vi: `<p>Hệ thống giám sát chất lượng nước và chuẩn đoán bệnh tôm tự động dựa trên IoT kết hợp trí tuệ nhân tạo. Giải pháp giải quyết bài toán rủi ro lớn trong ngành nuôi tôm công nghiệp tại Bạc Liêu và Cà Mau.</p><h4>Kiến trúc hệ thống</h4><ul><li><strong>Trạm thu thập dữ liệu (IoT Node):</strong> Sử dụng vi điều khiển ESP32 kết nối các cảm biến đo độ pH, nhiệt độ, nồng độ oxy hòa tan (DO) và độ mặn. Dữ liệu truyền liên tục lên Firebase Realtime Database.</li><li><strong>Trí tuệ nhân tạo:</strong> Ứng dụng mô hình phân loại hình ảnh chạy trên máy chủ đám mây để nhận diện sớm các dấu hiệu đốm trắng, đầu vàng trên thân tôm.</li><li><strong>Cảnh báo khẩn cấp:</strong> Hệ thống tự động gửi thông báo đẩy (Push notification) về điện thoại của chủ ao khi các chỉ số sinh hóa nước vượt ngưỡng an toàn.</li></ul><h4>Ý nghĩa thực tế</h4><p>Giúp người nuôi tôm giảm thiểu 40% rủi ro mất trắng do dịch bệnh bùng phát bất ngờ nhờ hệ thống cảnh báo sớm hoạt động 24/7.</p>`,
+      jp: `<p>IoTと人工知能を搭載した、自動水質監視およびエビ病気診断システム。バックリウ省とカマウ省における産業用エビ養殖の重大なリスクに対応します。</p><h4>システム構成</h4><ul><li><strong>データ収集 (IoTノード):</strong> ESP32を使用してpH、温度、DO、塩分センサーを接続し、Firebase Realtime Databaseにデータをストリーミング。</li><li><strong>人工知能:</strong> クラウドサーバーに画像分類モデル（CNN）を導入し、白斑病や黄頭病の初期症状を検出。</li><li><strong>緊急アラート:</strong> 水質指標が安全基準値を超えた場合に、自動的にモバイルプッシュ通知をトリガー。</li></ul><h4>実用的なメリット</h4><p>24時間365日の早期警戒監視システムにより、予期せぬ病気の発生による不作リスクを40%低減します。</p>`
+    }
+  },
+  'smart-home-fall': {
+    title: { en: 'Smart Home — Fall Detection', vi: 'Smart Home — Té Ngã', jp: 'スマートホーム — 転倒検知' },
+    category: { en: 'AI & IOT SYSTEM', vi: 'AI & IOT SYSTEM', jp: 'AI & IOT SYSTEM' },
+    duration: { en: '03/2025 - 05/2025', vi: '03/2025 - 05/2025', jp: '2025/03 - 2025/05' },
+    role: { en: 'AI Developer', vi: 'AI Developer', jp: 'AIデベロッパー' },
+    desc: {
+      en: `<p>A smart fall detection system designed for mobility-impaired individuals and elderly people living independently in a Smart Home environment.</p><h4>Implementation Method</h4><ul><li>Utilized IP surveillance cameras connected to embedded computers to process real-time video streams.</li><li>Applied YOLOv8 Pose Estimation to extract body keypoints, analyzing back angle and vertical height changes to determine falls.</li><li>Filtered false alarms (sleeping, bending over to pick items) with temporal threshold algorithms.</li></ul><h4>Response Mechanism</h4><ul><li>If a fall is detected for over 5 seconds with no recovery action, the system triggers alarms via ESP32 smart plugs and sends urgent alerts with snapshots to relatives via Telegram.</li></ul>`,
+      vi: `<p>Hệ thống nhận diện té ngã thông minh dành riêng cho người khuyết tật vận động và người cao tuổi sống độc lập trong môi trường Smart Home.</p><h4>Phương pháp triển khai</h4><ul><li>Sử dụng camera IP giám sát kết nối máy tính nhúng để xử lý luồng video thời gian thực.</li><li>Ứng dụng mô hình YOLOv8 Pose Estimation để trích xuất khung xương (keypoints) cơ thể người, từ đó phân tích góc nghiêng của lưng và tốc độ thay đổi độ cao đột ngột để xác định trạng thái ngã.</li><li>Tránh báo động giả khi người dùng nằm ngủ hoặc cúi người nhặt đồ vật bằng thuật toán lọc ngưỡng thời gian.</li></ul><h4>Cơ chế phản ứng</h4><p>Khi phát hiện té ngã kéo dài quá 5 giây mà không có phản ứng đứng dậy, hệ thống lập tức kích hoạt còi báo động trong nhà qua ESP32 Smart Plug, đồng thời gửi tin nhắn khẩn kèm ảnh chụp hiện trường qua Telegram Bot đến người thân.</p>`,
+      jp: `<p>スマートホーム環境で一人暮らしをしている高齢者や運動機能障害のある方向けの、スマート転倒検出システム。</p><h4>導入手法</h4><ul><li>リアルタイムのビデオストリームを処理するために、組み込みコンピュータに接続されたIP監視カメラを使用。</li><li>YOLOv8 Pose Estimationを適用して身体のキーポイントを抽出し、背中の角度と垂直方向の高さ変化を分析して転倒を判定。</li><li>時間しきい値アルゴリズムにより、誤報（睡眠、物を拾うためにかがむ動作など）を排除。</li></ul><h4>緊急対応メカニズム</h4><ul><li>転倒が5秒以上検出され、回復動作がない場合、システムはESP32スマートプラグを介してアラームを鳴らし、Telegramを通じて現場のスナップショットを親族に即座に送信。</li></ul>`
+    }
+  },
+  'charity-meals': {
+    title: { en: 'Charity Meals', vi: 'Bữa Cơm Thiện Nguyện', jp: 'チャリティミール' },
+    category: { en: 'COMMUNITY PROJECT', vi: 'COMMUNITY PROJECT', jp: 'COMMUNITY PROJECT' },
+    duration: { en: '10/2024 - 12/2024', vi: '10/2024 - 12/2024', jp: '2024/10 - 2024/12' },
+    role: { en: 'Project Lead', vi: 'Nhóm trưởng dự án', jp: 'プロジェクトリーダー' },
+    desc: {
+      en: `<p>The "Bữa Cơm Yêu Thương" charity campaign launched by student clubs at FPT Can Tho to support underprivileged patients and manual laborers in the city.</p><h4>Coordination Role</h4><ul><li>Planned fundraising events through handmade crafts sales and donations from students and faculty.</li><li>Managed budget, designed menus ensuring food safety, and assigned staff for preparation.</li><li>Coordinated directly with local hospitals to distribute meals to people in need.</li></ul><h4>Social Impact</h4><p>Raised over 15 million VND, distributing 200+ warm hot meals. The campaign fostered social responsibility and community connection among students.</p>`,
+      vi: `<p>Chiến dịch thiện nguyện "Bữa Cơm Yêu Thương" do câu lạc bộ sinh viên FPT Cần Thơ phát động nhằm chia sẻ khó khăn với các bệnh nhân nghèo và người lao động có hoàn cảnh khó khăn trên địa bàn thành phố.</p><h4>Vai trò điều phối</h4><ul><li>Lập kế hoạch gây quỹ thông qua các hoạt động bán đồ handmade, nhận quyên góp từ sinh viên và giảng viên trường.</li><li>Quản lý ngân sách, lên thực đơn đảm bảo an toàn vệ sinh thực phẩm và phân công nhân sự chuẩn bị nguyên liệu.</li><li>Liên hệ và phối hợp với các bệnh viện khu vực để phân phối đúng đối tượng cần giúp đỡ.</li></ul><h4>Kết quả xã hội</h4><p>Chiến dịch đã quyên góp được hơn 15 triệu đồng, chuẩn bị và phân phát trực tiếp hơn 200 suất ăn nóng ấm áp nghĩa tình. Dự án tạo tiếng vang lớn và thắt chặt tinh thần trách nhiệm xã hội trong cộng đồng sinh viên.</p>`,
+      jp: `<p>カントー市の困窮している患者や手作業労働者を支援するために、FPT大学カントー校の学生クラブが立ち上げた「Bữa Cơm Yêu Thương」チャリティキャンペーン。</p><h4>コーディネーション業務</h4><ul><li>手作りクラフトの販売や、学生・教員からの寄付を通じて募金イベントを計画。</li><li>予算管理、食品安全を確保したメニュー設計、調理スタッフの割り当て。</li><li>食事を必要とする人々に届けるため、地元の病院と直接連携。</li></ul><h4>社会的成果</h4><p>1500万VND以上の寄付を集め、200食以上の温かい食事を配布。このキャンペーンは、学生の社会的責任とコミュニティとのつながりを育みました。</p>`
+    }
+  },
+  'study-kit-ai': {
+    title: { en: 'AI Study Toolkit', vi: 'Bộ Công cụ Học Tập AI', jp: 'AI学習ツールキット' },
+    category: { en: 'STUDY APP', vi: 'STUDY APP', jp: 'STUDY APP' },
+    duration: { en: '01/2025 - 02/2025', vi: '01/2025 - 02/2025', jp: '2025/01 - 2025/02' },
+    role: { en: 'Frontend Developer', vi: 'Frontend Developer', jp: 'フロントエンド開発者' },
+    desc: {
+      en: `<p>A lightweight ed-tech web ecosystem helping students study efficiently with AI explanations.</p><h4>Integrated Tools</h4><ul><li><strong>306-Question Quiz:</strong> Prep quizzes for major courses with adaptive practice and automated scoring.</li><li><strong>Japanese Flashcards:</strong> Vocabulary flashcard application implementing Spaced Repetition for deep retention.</li><li><strong>Statistics Calculator:</strong> Advanced probability calculator with interactive data visualization charts.</li></ul><h4>AI Integration</h4><p>Leveraged Gemini/OpenAI API to offer instant "Ask AI" explanations, letting students analyze mistakes and view step-by-step solutions for any quiz or calculator problem.</p>`,
+      vi: `<p>Hệ sinh thái ứng dụng Web gọn nhẹ hỗ trợ sinh viên học tập hiệu quả, tích hợp AI thông minh để giải thích cặn kẽ kiến thức.</p><h4>Các công cụ tích hợp</h4><ul><li><strong>Quiz 306 câu:</strong> Bộ đề trắc nghiệm ôn tập các môn học cơ sở ngành, có chế độ luyện tập nâng cao và tính điểm tự động.</li><li><strong>Flashcard Nhật ngữ:</strong> Ứng dụng flashcard học từ vựng tiếng Nhật áp dụng phương pháp Spaced Repetition (lặp lại ngắt quãng) giúp ghi nhớ sâu.</li><li><strong>Calculator thống kê:</strong> Công cụ tính toán các bài toán xác suất thống kê nâng cao kèm biểu đồ trực quan hóa dữ liệu.</li></ul><h4>Tích hợp AI</h4><p>Tận dụng API của Gemini/OpenAI để sinh viên khi làm sai bất kỳ câu hỏi nào trong Quiz hoặc bài toán thống kê đều có thể click "Hỏi AI" để được phân tích từng bước giải thích cặn kẽ lỗi sai và kiến thức liên quan.</p>`,
+      jp: `<p>AIによる解説機能を備えた、学生の効率的な学習を支援する軽量なエドテックWebエコシステム。</p><h4>統合されたツール</h4><ul><li><strong>306問のクイズ：</strong>アダプティブな練習と自動採点機能を備えた、専門基礎科目の準備クイズ。</li><li><strong>日本語フラッシュカード：</strong>長期記憶を促す間隔反復法（Spaced Repetition）を実装した単語カードアプリ。</li><li><strong>統計計算機：</strong>インタラクティブなデータ視覚化グラフを備えた、高度な確率計算ツール。</li></ul><h4>AI統合</h4><p>Gemini/OpenAI APIを活用して「AIに質問」機能を提供。学生がミスを分析し、任意のクイズや計算問題のステップバイステップの解決策を確認できるようにしました。</p>`
+    }
+  },
+  'hotel-management': {
+    title: { en: 'Hotel Management System', vi: 'Quản lý Khách sạn', jp: 'ホテル管理システム' },
+    category: { en: 'BACKEND & WEB SYSTEM', vi: 'BACKEND & WEB SYSTEM', jp: 'BACKEND & WEB SYSTEM' },
+    duration: { en: '01/2026 - Present (~70%)', vi: '01/2026 - Nay (~70%)', jp: '2026/01 - 現在 (~70%)' },
+    role: { en: 'Backend Developer (Team of 6 - FPT University)', vi: 'Backend Developer (Nhóm 6 người - FPT University)', jp: 'バックエンド開発者 (6名チーム - FPT大学)' },
+    desc: {
+      en: `<p>A comprehensive hotel management platform supporting real-time room availability, seamless booking flows, automated billing, and revenue reports.</p><h4>Progress & Core Features</h4><ul><li><strong>70% Core Completed:</strong> Implemented booking workflows, check-in/out, automated payment transactions, and role-based staff authorization.</li><li><strong>Email OTP Verification:</strong> Integrated secure email OTP codes for registration and password recovery.</li><li><strong>Reports & Analytics:</strong> Admin Dashboard visualizing revenue reports and room occupancy metrics in real-time.</li></ul><h4>Tech Stack</h4><p>Backend built with Java Spring Boot, using Spring Data JPA to interact with MySQL database, RESTful APIs, and Thymeleaf for dynamic server-side template rendering.</p>`,
+      vi: `<p>Hệ thống Quản lý & Đặt phòng Khách sạn là một nền tảng quản trị khách sạn toàn diện, hỗ trợ hiển thị tình trạng phòng thực tế (real-time), quy trình đặt phòng nhanh chóng, thanh toán tự động và báo cáo doanh thu.</p><h4>Tiến độ & Chức năng lõi</h4><ul><li><strong>Hoàn thành ~70% core:</strong> Đã triển khai xong các luồng nghiệp vụ đặt phòng (Booking), check-in, check-out, thanh toán và phân quyền chi tiết cho nhân viên.</li><li><strong>Hệ thống OTP qua Email:</strong> Tích hợp xác thực OTP qua Email phục vụ cho việc đăng ký tài khoản mới và chức năng quên mật khẩu an toàn.</li><li><strong>Báo cáo & Thống kê:</strong> Admin Dashboard hiển thị biểu đồ báo cáo doanh thu trực quan và tỷ lệ lấp đầy phòng theo thời gian thực.</li></ul><h4>Công nghệ sử dụng</h4><p>Backend được viết bằng Java Spring Boot, sử dụng Spring Data JPA để tương tác cơ sở dữ liệu MySQL, xây dựng RESTful APIs chuẩn chỉnh kết hợp Thymeleaf render giao diện động phía client.</p>`,
+      jp: `<p>リアルタイムの空室状況、シームレスな予約フロー、自動請求、および売上レポートをサポートする包括的なホテル管理プラットフォーム。</p><h4>進捗状況とコア機能</h4><ul><li><strong>コア機能の70%が完了：</strong>予約ワークフロー、チェックイン・チェックアウト、自動決済処理、およびロールベースのスタッフ権限管理を実装。</li><li><strong>メールOTP認証：</strong>新規登録およびパスワード回復のための安全なメールOTPコードの統合。</li><li><strong>レポートと分析：</strong>売上レポートと客室占有率の指標をリアルタイムで視覚化する管理ダッシュボード。</li></ul><h4>技術スタック</h4><p>Java Spring Bootを使用したバックエンド、MySQLデータベースと対話するためのSpring Data JPAの使用、RESTful API、および動的なサーバーサイドテンプレートレンダリングのためのThymeleaf。</p>`
+    }
+  }
+};
+
+function getTranslation(key, lang) {
+  const dict = translations[key];
+  if (!dict) return '';
+  return dict[lang] || dict['en'] || '';
+}
+
+function getTranslatedProjectProp(id, prop, lang) {
+  const proj = projectTranslations[id];
+  if (!proj) {
+    const rawData = projectData[id];
+    return rawData ? rawData[prop] : '';
+  }
+  const dict = proj[prop];
+  if (!dict) return '';
+  return dict[lang] || dict['en'] || '';
+}
+
+function changeLanguage(lang) {
+  localStorage.setItem('portfolio_lang', lang);
+  
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    let translation = getTranslation(key, lang);
+    if (!translation) return;
+
+    // Handle elements with special formatting or inner content
+    if (key === 'discussion-comments-count') {
+      const countEl = document.getElementById('commentCount');
+      const countVal = countEl ? countEl.innerText : '0';
+      el.innerHTML = translation.replace('{count}', `<span id="commentCount">${countVal}</span>`);
+    } else if (key === 'contact-btn-send') {
+      el.innerHTML = `<span>${translation}</span><span>→</span>`;
+    } else if (key === 'projects-cta-btn') {
+      el.innerHTML = translation;
+    } else if (key === 'projects-link-view' || key === 'projects-link-details') {
+      el.innerHTML = translation;
+    } else {
+      el.innerHTML = translation;
+    }
+  });
+
+  // Update data-i18n-placeholder elements
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const translation = getTranslation(key, lang);
+    if (translation) {
+      el.setAttribute('placeholder', translation);
+    }
+  });
+
+  // Update lang active states
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  const activeBtn = document.getElementById('lang-' + lang);
+  if (activeBtn) activeBtn.classList.add('active');
+  
+  const activeMobileBtn = document.getElementById('mobile-lang-' + lang);
+  if (activeMobileBtn) activeMobileBtn.classList.add('active');
+
+  // Trigger comments re-render if comments logic is ready
+  if (typeof renderComments === 'function') {
+    let comments = JSON.parse(localStorage.getItem('portfolio_comments') || '[]');
+    renderComments(comments);
+  }
+}
+
+// Set default language on load
+document.addEventListener('DOMContentLoaded', () => {
+  const defaultLang = localStorage.getItem('portfolio_lang') || 'en';
+  changeLanguage(defaultLang);
+});
+
+function submitForm(e) {
       e.preventDefault();
       const b = document.getElementById('fsub');
-      b.innerHTML = '<span>Sent ✓</span><span>✓</span>';
+      const currentLang = localStorage.getItem('portfolio_lang') || 'en';
+    const feedbackText = getTranslation('js-sent-feedback', currentLang);
+    b.innerHTML = `<span>${feedbackText}</span><span>✓</span>`;
       b.style.background = '#8acc00';
       setTimeout(() => {
-        b.innerHTML = '<span>Send Message</span><span>→</span>';
+        b.innerHTML = '<span data-i18n="contact-btn-send">Send Message</span><span>→</span>';
         b.style.background = '';
         e.target.reset();
       }, 3000);
